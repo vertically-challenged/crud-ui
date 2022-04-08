@@ -1,0 +1,11 @@
+input {
+  border: none;
+  background: none;
+  border: solid 2px rgb(104, 104, 104);;
+  padding: 8px;
+  outline: none;
+
+  &:hover, &:focus {
+    border: solid 2px rgb(155, 4, 4);;
+  }
+}
