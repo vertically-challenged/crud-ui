@@ -7,6 +7,11 @@
 Форкнуть проект https://gitlab.com/noorsoft-vrn/education/crud-ui и работать в новом форкнутом проекте. 
 
 >[Описание методов в проекте crud](https://gitlab.com/noorsoft-vrn/education/crud) 
+ 1. GET /api/records - получить все записи
+ 2. PUT /api/records - создать новую запись (данные передавать в виде json'a с названием data, например, {data: {name: 'test name'}})
+ 3. GET /api/records/:id - получить запись по id
+ 4. DELETE /api/records/:id - удалить запись по id
+ 5. POST /api/records/:id - обновить запись по id
 
 >Бекенд захостен по ссылке [http://178.128.196.163:3000](http://178.128.196.163:3000)
 
