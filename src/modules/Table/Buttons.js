@@ -3,24 +3,36 @@ import Button from '../common/Button/Button'
 import API from '../../API/api';
 
 const Buttons = ({record, setUpdate, row, setRow}) => {
-  const onClickDelete = (record, setUpdate) => {
-    API.deleteRecord(record._id).then(() => {
-      setUpdate(true)
-    })
+
+  const onClickDeleteHandler = (record, setUpdate) => {
+    console.log('setUpdate', setUpdate)
+    return () => {
+      API.deleteRecord(record._id).then(() => {
+        setUpdate(true)
+      })
+    }
   }
 
-  const onClickSave = (record, setRow, row) => {
-    API.saveRecord(record).then(() => {
-      setRow({...record, edit: !row.edit})
-    })
+  const onClickSaveHandler = (record, setRow, row) => {
+    return () => {
+      API.saveRecord(record).then(() => {
+        setRow({...record, edit: !row.edit})
+      })
+    }
+  }
+
+  const onClickEditHandler = (row) => {
+    return () => {
+      setRow({...row, edit: !row.edit})
+    }
   }
 
   return (
     <>
       {
-        [<Button onClick={() => {onClickDelete(record, setUpdate, row, setRow)}}>Delete record</Button>, 
-          <Button onClick={() => {onClickSave(record, setRow, row)}}>Save record</Button>,
-          <Button onClick={() => {setRow({...row, edit: !row.edit})}}>Edit record</Button>
+        [<Button onClick={onClickDeleteHandler(record, setUpdate)}>Delete record</Button>, 
+          <Button onClick={onClickSaveHandler(record, setRow, row)}>Save record</Button>,
+          <Button onClick={onClickEditHandler(row)}>Edit record</Button>
         ].map((button, index) => {
           if (row.edit && index === 2) return null
           if (!row.edit && index === 1) return null
